@@ -9,6 +9,25 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.16"
-  }
+    "@hotwired/turbo-rails": "^8.0.16",
+    "daisyui": "^5.1.13"
+  },
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mo-land/noko2_nyanko.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mo-land/noko2_nyanko/issues"
+  },
+  "homepage": "https://github.com/mo-land/noko2_nyanko#readme"
 }
