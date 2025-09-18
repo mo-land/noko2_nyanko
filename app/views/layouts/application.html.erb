@@ -15,12 +15,13 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <html data-theme="retro"></html>
+    <script src="https://kit.fontawesome.com/d9485f9c23.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
-    </main>
   </body>
 </html>
