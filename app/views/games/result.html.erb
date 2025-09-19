@@ -1,0 +1,27 @@
+<div class="p-6 flex flex-col items-center">
+  <h1 class="text-2xl font-bold mb-4">🏆 ランキング 🏆</h1>
+
+  <table class="table w-full max-w-md bg-base-200 rounded-lg">
+    <thead>
+      <tr>
+        <th>順位</th>
+        <th>スコア</th>
+        <th>日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @records.each_with_index do |record, i| %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= record.score %></td>
+          <td><%= l(record.created_at, format: :short) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="mt-6">
+    <%= link_to "もう一度遊ぶ", play_path, class: "btn btn-primary mr-2" %>
+    <%= link_to "トップへ戻る", root_path, class: "btn btn-outline" %>
+  </div>
+</div>
