@@ -12,5 +12,19 @@ class GamesController < ApplicationController
 
   def result
     @records = GameRecord.order(score: :desc).limit(10)
+
+    # 今日のランキング
+    today = Time.zone.today
+    @today_records = GameRecord.where(created_at: today.beginning_of_day..today.end_of_day)
+                               .order(score: :desc).limit(10)
+
+    # 週間ランキング（今週の月曜〜日曜）
+    week_start = Time.zone.today.beginning_of_week
+    week_end   = Time.zone.today.end_of_week
+    @week_records = GameRecord.where(created_at: week_start.beginning_of_day..week_end.end_of_day)
+                              .order(score: :desc).limit(10)
+
+    @category = params[:category]
+    @score    = params[:score]
   end
 end
