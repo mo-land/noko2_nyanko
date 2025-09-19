@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { post } from '@rails/request.js'
 
 export default class extends Controller {
   static targets = [
@@ -36,14 +37,19 @@ export default class extends Controller {
         this.isGameOver = true
         this.timerTarget.textContent = 0
 
+        const category = this.getResultCategory()
+
         // ⏰ 時間切れのときだけサーバーにスコア送信
-        fetch("/finish", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ score: this.total })
+        post("/finish", {
+          body: {
+            score: this.total.score,
+            category: category
+          }
         }).then(() => {
-          // 結果ページへ遷移
-          window.location.href = "/result"
+          // 2秒待ってから結果ページへ遷移
+          setTimeout(() => {
+            window.location.href = `/result?category=${encodeURIComponent(category)}&score=${this.total.score}`
+          }, 2000)
         })
       }
     }, 1000)
@@ -79,7 +85,7 @@ export default class extends Controller {
     this.fieldTarget.appendChild(img)
 
     // 一定時間後に消える
-    setTimeout(() => div.remove(), 2000)
+    setTimeout(() => img.remove(), 2000)
   }
 
   collectItem(type, element) {
@@ -116,5 +122,23 @@ export default class extends Controller {
     this.total.score = this.mushroom.score + this.bamboo.score + this.cat.score
     this.totalCountTarget.textContent = this.total.count
     this.totalScoreTarget.textContent = this.total.score
+  }
+
+  getResultCategory() {
+    const { mushroom, bamboo, cat, total } = this
+
+    if (mushroom.count > bamboo.count && mushroom.score >= 100) {
+      return "きのこマスター 🍄"
+    } else if (bamboo.count > mushroom.count && bamboo.score >= 100) {
+      return "たけのこ名人 🎋"
+    } else if (cat.count >= 3) {
+      return "ねこ様第一主義 🐱"
+    } else if (mushroom.count >= 2 && bamboo.count >= 2 && cat.count >= 2) {
+      return "バランス王 👑"
+    } else if (total.score >= 200) {
+      return "秋の支配者 🍠"
+    } else {
+      return "ゆったりお散歩 🚶"
+    }
   }
 }
