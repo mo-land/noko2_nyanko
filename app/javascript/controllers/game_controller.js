@@ -35,6 +35,16 @@ export default class extends Controller {
         clearInterval(this.timerInterval)
         this.isGameOver = true
         this.timerTarget.textContent = 0
+
+        // ⏰ 時間切れのときだけサーバーにスコア送信
+        fetch("/finish", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ score: this.total })
+        }).then(() => {
+          // 結果ページへ遷移
+          window.location.href = "/result"
+        })
       }
     }, 1000)
   }
