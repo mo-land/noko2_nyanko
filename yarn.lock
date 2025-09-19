@@ -155,6 +155,11 @@
   resolved "https://registry.npmjs.org/@rails/actioncable/-/actioncable-8.0.201.tgz"
   integrity sha512-WiXZodvnK7u+wlu72DZydfV75x14HhzXI84sto9xcdsW1DMOHK+jYwQuuE/Wh/hKH5yajFIw/3DUP6MHDeGrbA==
 
+"@rails/request.js@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.npmjs.org/@rails/request.js/-/request.js-0.0.12.tgz"
+  integrity sha512-g3//JBja1s04Zflj7IoMLQuXza9i4ZvtLmm0r0dMwh1QQUs6rL2iKUOGGyERfLsd81SnXC5ucfVV//rtsDlEEA==
+
 daisyui@^5.1.13:
   version "5.1.13"
   resolved "https://registry.npmjs.org/daisyui/-/daisyui-5.1.13.tgz"
