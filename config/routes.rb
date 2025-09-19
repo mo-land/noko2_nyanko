@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root "static_pages#top"
   get "static_pages/top"
+
+  get "play", to: "games#play"
+  post "finish", to: "games#finish"   # ゲーム終了時にスコア保存
+  get "ranking", to: "games#ranking" # ランキング表示
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
