@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get "play", to: "games#play"
   post "finish", to: "games#finish"   # ゲーム終了時にスコア保存
-  get "ranking", to: "games#ranking" # ランキング表示
+  get "result", to: "games#result" # ランキング表示
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

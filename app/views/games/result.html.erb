@@ -1,0 +1,153 @@
+
+<!-- 結果カード -->
+<div class="py-8">
+  <div class="card shadow-xl mb-8 max-w-2xl mx-auto">
+    <div class="card-body text-center">
+      <h2 class="card-title text-3xl font-bold justify-center mb-4">あなたのタイプは…</h2>
+
+      <!-- タイプ表示 -->
+        <figure>
+          <% case @category %>
+            <% when "きのこマスター 🍄" %>
+              <%= image_tag 'kinoko.png' %>
+            <% when "たけのこ名人 🎋" %>
+              <%= image_tag 'takenoko.png' %>
+            <% when "ねこ様第一主義 🐱" %>
+              <%= image_tag 'nekosama.png' %>
+            <% when "バランス王 👑" %>
+              <%= image_tag 'balance.png' %>
+            <% when "秋の支配者 🍠" %>
+              <%= image_tag 'autumn_god.png' %>
+            <% when "ゆったりお散歩 🚶" %>
+              <%= image_tag 'walk.png' %>
+          <% end %>
+        </figure>
+        <div class="card-body">
+            <p class="text-lg font-semibold text-gray-600">最終スコアは</p>
+            <div class="text-2xl font-extrabold text-orange-600"><%= @score %><span class="text-xl ml-2">点でした 🐾</span></div>
+          <div class="card-actions justify-center mt-4">
+              <!-- シェアボタン -->
+            <div>
+              <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("私の結果は「#{@category}」！合計#{@score}点でした！ #きのこたけのこにゃんこ #noko2_nyanko")}&url=#{CGI.escape("#{request.base_url}?from=result")}",
+              target: "_blank", rel: "noopener",
+              class: "btn  btn-neutral btn-lg" do %>
+                <i class="fa-brands fa-x-twitter fa-lg"></i>
+                <p>結果をシェア</p>
+              <% end %>
+            </div>
+          </div>
+          <!-- アクションボタン -->
+          <div class="flex justify-center gap-4 mt-2">
+            <%= link_to "もう一度遊ぶ", play_path, class: "btn btn-primary btn-lg" %>
+            <%= link_to "トップへ戻る", root_path, class: "btn btn-outline btn-lg" %>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ランキングカード -->
+<div class="card shadow-xl max-w-2xl mx-auto mb-8">
+  <div class="card-body">
+    <h2 class="card-title text-2xl font-bold justify-center mb-6">本日のランキング</h2>
+
+    <div class="overflow-x-auto">
+      <table class="table table-zebra w-full">
+        <thead>
+          <tr class="bg-base-200">
+            <th class="text-center font-bold">順位</th>
+            <th class="text-center font-bold">スコア</th>
+            <th class="text-center font-bold">日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @today_records.each_with_index do |record, i| %>
+            <tr class="<%= 'bg-yellow-50 font-semibold' if i < 3 %>">
+              <td class="text-center">
+                <% if i < 3 %>
+                  <div class="badge badge-lg <%= 'badge-warning' if i == 0 %> <%= 'badge-neutral' if i == 1 %> <%= 'badge-accent' if i == 2 %>">
+                    <%= i + 1 %>
+                  </div>
+                <% else %>
+                  <%= i + 1 %>
+                <% end %>
+              </td>
+              <td class="text-center font-bold text-lg"><%= record.score %>点</td>
+              <td class="text-center text-sm"><%= record.created_at.strftime("%m/%d %H:%M") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-body">
+    <h2 class="card-title text-2xl font-bold justify-center mb-6">週間ランキング</h2>
+
+    <div class="overflow-x-auto">
+      <table class="table table-zebra w-full">
+        <thead>
+          <tr class="bg-base-200">
+            <th class="text-center font-bold">順位</th>
+            <th class="text-center font-bold">スコア</th>
+            <th class="text-center font-bold">日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @week_records.each_with_index do |record, i| %>
+            <tr class="<%= 'bg-yellow-50 font-semibold' if i < 3 %>">
+              <td class="text-center">
+                <% if i < 3 %>
+                  <div class="badge badge-lg <%= 'badge-warning' if i == 0 %> <%= 'badge-neutral' if i == 1 %> <%= 'badge-accent' if i == 2 %>">
+                    <%= i + 1 %>
+                  </div>
+                <% else %>
+                  <%= i + 1 %>
+                <% end %>
+              </td>
+              <td class="text-center font-bold text-lg"><%= record.score %>点</td>
+              <td class="text-center text-sm"><%= record.created_at.strftime("%m/%d %H:%M") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-body">
+    <h2 class="card-title text-2xl font-bold justify-center mb-6">全期間ランキング</h2>
+
+    <div class="overflow-x-auto">
+      <table class="table table-zebra w-full">
+        <thead>
+          <tr class="bg-base-200">
+            <th class="text-center font-bold">順位</th>
+            <th class="text-center font-bold">スコア</th>
+            <th class="text-center font-bold">日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @records.each_with_index do |record, i| %>
+            <tr class="<%= 'bg-yellow-50 font-semibold' if i < 3 %>">
+              <td class="text-center">
+                <% if i < 3 %>
+                  <div class="badge badge-lg <%= 'badge-warning' if i == 0 %> <%= 'badge-neutral' if i == 1 %> <%= 'badge-accent' if i == 2 %>">
+                    <%= i + 1 %>
+                  </div>
+                <% else %>
+                  <%= i + 1 %>
+                <% end %>
+              </td>
+              <td class="text-center font-bold text-lg"><%= record.score %>点</td>
+              <td class="text-center text-sm"><%= record.created_at.strftime("%m/%d %H:%M") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <!-- アクションボタン -->
+  <div class="flex justify-center gap-4 mt-4">
+    <%= link_to "もう一度遊ぶ", play_path, class: "btn btn-primary btn-lg" %>
+    <%= link_to "トップへ戻る", root_path, class: "btn btn-outline btn-lg" %>
+  </div>
+  </div>
+</div>
