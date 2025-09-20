@@ -28,7 +28,7 @@
           <div class="card-actions justify-center mt-4">
               <!-- シェアボタン -->
             <div>
-              <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("私の結果は「#{@category}」！合計#{@score}点でした！ #きのこたけのこにゃんこ #noko2_nyanko")}&url=#{CGI.escape("#{request.base_url}?from=result")}",
+              <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("私は〈〈〈#{@category}！〉〉〉\n合計#{@score}点でした！\n#きのこたけのこにゃんこ #noko2_nyanko\n\n")}&url=#{CGI.escape("#{request.base_url}?from=#{@ogp_category}")}",
               target: "_blank", rel: "noopener",
               class: "btn  btn-neutral btn-lg" do %>
                 <i class="fa-brands fa-x-twitter fa-lg"></i>
