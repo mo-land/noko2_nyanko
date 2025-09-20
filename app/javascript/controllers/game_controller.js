@@ -109,7 +109,7 @@ export default class extends Controller {
       img.src = this.getAssetPath("cat.png")
     }
 
-    img.className = "absolute cursor-pointer w-12 h-12" // Tailwindで大きさ指定
+    img.className = "absolute cursor-pointer w-8 h-8 lg:w-12 lgh-12" // Tailwindで大きさ指定
     img.style.top = `${Math.random() * 90}%`
     img.style.left = `${Math.random() * 90}%`
 
@@ -118,7 +118,7 @@ export default class extends Controller {
     this.fieldTarget.appendChild(img)
 
     // 一定時間後に消える（スマホは早めに消える）
-    const removeDelay = this.isMobile() ? 800 : 2000
+    const removeDelay = this.isMobile() ? 600 : 2000
     setTimeout(() => img.remove(), removeDelay)
   }
 
