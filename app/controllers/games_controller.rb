@@ -26,5 +26,29 @@ class GamesController < ApplicationController
 
     @category = params[:category]
     @score    = params[:score]
+
+    set_ogp_category
+  end
+
+  private
+
+  def set_ogp_category
+    case params[:category]
+    when "秋の支配者 🍠"
+      @ogp_category = "autumn_god"
+    when "きのこマスター 🍄"
+      @ogp_category = "kinoko"
+    when "たけのこ名人 🎋"
+      @ogp_category = "takenoko"
+    when "ねこ様第一主義 🐱"
+      @ogp_category = "nekosama"
+    when "バランス王 👑"
+      @ogp_category = "balance"
+    when "ゆったりお散歩 🚶"
+      @ogp_category = "walk"
+    else
+      # デフォルト（直接アクセスやその他）
+      @ogp_category = "default"
+    end
   end
 end

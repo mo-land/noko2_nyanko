@@ -43,6 +43,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "swimming_fish", "~> 0.2.2"
 end
 
 group :development do
@@ -58,3 +60,5 @@ end
 
 gem "tailwindcss-rails", "~> 4.0"
 gem "tailwindcss-ruby"
+
+gem "meta-tags"

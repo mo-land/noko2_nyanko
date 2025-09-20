@@ -109,7 +109,7 @@ export default class extends Controller {
       img.src = this.getAssetPath("cat.png")
     }
 
-    img.className = "absolute cursor-pointer w-8 h-8 lg:w-12 lgh-12" // Tailwindで大きさ指定
+    img.className = "absolute cursor-pointer w-8 h-8 lg:w-12 lg:h-12" // Tailwindで大きさ指定
     img.style.top = `${Math.random() * 90}%`
     img.style.left = `${Math.random() * 90}%`
 
