@@ -1,43 +1,47 @@
-<div data-controller="game" class="p-6">
+<div data-controller="game"
+     data-game-mushroom-path-value="<%= asset_path('mushroom.png') %>"
+     data-game-bamboo-path-value="<%= asset_path('bamboo.png') %>"
+     data-game-cat-path-value="<%= asset_path('cat.png') %>"
+     class="p-6">
 <h1 class="row-start-3 text-center text-2xl font-bold pt-4">きのこたけのこにゃんこをタッチ!</h1>
 <div class="overflow-x-auto py-2">
-  <table class="table table-sm">
+  <table class="table table-sm lg:text-xl">
     <thead>
       <tr>
-        <th></th>
-        <th>Get!</th>
-        <th>カウント</th>
-        <th>得点</th>
-        <th>説明</th>
+        <th class="lg:text-xl"></th>
+        <th class="lg:text-xl">Get!</th>
+        <th class="lg:text-xl">カウント</th>
+        <th class="lg:text-xl">得点</th>
+        <th class="lg:text-xl">説明</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th></th>
-        <th>合計</th>
-        <td class="text-blue-600" data-game-target="totalCount">0</td>
-        <td><span data-game-target="totalScore">0</span>点</td>
+        <th class="lg:text-xl"></th>
+        <th class="lg:text-xl">合計</th>
+        <td class="text-blue-600 lg:text-xl" data-game-target="totalCount">0</td>
+        <td class="lg:text-xl"><span data-game-target="totalScore">0</span>点</td>
       </tr>
       <tr>
-        <th></th>
-        <th>きのこ</th>
-        <td class="text-green-600" data-game-target="mushroomCount">0</td>
-        <td><span data-game-target="mushroomScore">0</span>点</td>
-        <td>1つにつき15点</td>
+        <th class="lg:text-xl"></th>
+        <th class="lg:text-xl">きのこ</th>
+        <td class="text-green-600 lg:text-xl" data-game-target="mushroomCount">0</td>
+        <td class="lg:text-xl"><span data-game-target="mushroomScore">0</span>点</td>
+        <td class="lg:text-xl">1つにつき15点</td>
       </tr>
       <tr>
-        <th></th>
-        <th>たけのこ</th>
-        <td class="text-yellow-600" data-game-target="bambooCount">0</td>
-        <td><span data-game-target="bambooScore">0</span>点</td>
-        <td>1つにつき15点</td>
+        <th class="lg:text-xl"></th>
+        <th class="lg:text-xl">たけのこ</th>
+        <td class="text-yellow-600 lg:text-xl" data-game-target="bambooCount">0</td>
+        <td class="lg:text-xl"><span data-game-target="bambooScore">0</span>点</td>
+        <td class="lg:text-xl">1つにつき15点</td>
       </tr>
       <tr>
-        <th></th>
-        <th>にゃんこ</th>
-        <td class="text-pink-600" data-game-target="catCount">0</td>
-        <td><span data-game-target="catScore">0</span>点</td>
-        <td>可愛いので1匹につき28点 ただし可愛いので2秒減る</td>
+        <th class="lg:text-xl"></th>
+        <th class="lg:text-xl">にゃんこ</th>
+        <td class="text-pink-600 lg:text-xl" data-game-target="catCount">0</td>
+        <td class="lg:text-xl"><span data-game-target="catScore">0</span>点</td>
+        <td class="lg:text-xl">可愛いので1匹につき28点 ただし可愛いので2秒減る</td>
       </tr>
     </tbody>
   </table>
