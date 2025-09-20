@@ -11,6 +11,12 @@ export default class extends Controller {
     "totalCount", "totalScore"
   ]
 
+  static values = {
+    mushroomPath: String,
+    bambooPath: String,
+    catPath: String
+  }
+
   connect() {
     this.timeLeft = 15
     this.isGameOver = false
@@ -25,6 +31,28 @@ export default class extends Controller {
     this.startTimer()
     // 出現ループ開始
     this.spawnLoop()
+  }
+
+  getAssetPath(filename) {
+    // Railsのasset_pathで生成されたパスを使用
+    if (filename === "mushroom.png") {
+      return this.mushroomPathValue
+    } else if (filename === "bamboo.png") {
+      return this.bambooPathValue
+    } else if (filename === "cat.png") {
+      return this.catPathValue
+    }
+    return `/assets/${filename}` // フォールバック
+  }
+
+  // メモリリークの防止
+  disconnect() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval)
+    }
+    if (this.spawnInterval) {
+      clearInterval(this.spawnInterval)
+    }
   }
 
   startTimer() {
@@ -69,11 +97,11 @@ export default class extends Controller {
     // img要素を生成
     const img = document.createElement("img")
     if (type === "mushroom") {
-      img.src = "/assets/mushroom.png" // Railsがコンパイル後に配信
+      img.src = this.getAssetPath("mushroom.png")
     } else if (type === "bamboo") {
-      img.src = "/assets/bamboo.png"
+      img.src = this.getAssetPath("bamboo.png")
     } else {
-      img.src = "/assets/cat.png"
+      img.src = this.getAssetPath("cat.png")
     }
 
     img.className = "absolute cursor-pointer w-12 h-12" // Tailwindで大きさ指定
@@ -127,7 +155,9 @@ export default class extends Controller {
   getResultCategory() {
     const { mushroom, bamboo, cat, total } = this
 
-    if (mushroom.count > bamboo.count && mushroom.score >= 100) {
+    if (total.score >= 230) {
+      return "秋の支配者 🍠"
+    } else if (mushroom.count > bamboo.count && mushroom.score >= 100) {
       return "きのこマスター 🍄"
     } else if (bamboo.count > mushroom.count && bamboo.score >= 100) {
       return "たけのこ名人 🎋"
@@ -135,8 +165,6 @@ export default class extends Controller {
       return "ねこ様第一主義 🐱"
     } else if (mushroom.count >= 2 && bamboo.count >= 2 && cat.count >= 2) {
       return "バランス王 👑"
-    } else if (total.score >= 200) {
-      return "秋の支配者 🍠"
     } else {
       return "ゆったりお散歩 🚶"
     }
