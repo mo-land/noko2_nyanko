@@ -45,6 +45,11 @@ export default class extends Controller {
     return `/assets/${filename}` // フォールバック
   }
 
+  isMobile() {
+    // 画面幅とタッチデバイスで判定
+    return window.innerWidth <= 768 || 'ontouchstart' in window
+  }
+
   // メモリリークの防止
   disconnect() {
     if (this.timerInterval) {
@@ -112,8 +117,9 @@ export default class extends Controller {
 
     this.fieldTarget.appendChild(img)
 
-    // 一定時間後に消える
-    setTimeout(() => img.remove(), 2000)
+    // 一定時間後に消える（スマホは早めに消える）
+    const removeDelay = this.isMobile() ? 800 : 2000
+    setTimeout(() => img.remove(), removeDelay)
   }
 
   collectItem(type, element) {
