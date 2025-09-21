@@ -1,16 +1,10 @@
-<div class="background-image min-h-screen">
-<div class="grid grid-rows-20 grid-flow-col gap-4 h-screen">
-  <h1 class="row-start-3 text-center text-5xl font-bold pt-4">のこのこにゃんこ</h1>
-  <div class="row-start-6 text-center font-bold lg:text-2xl">
-    <p>秋といえば、きのこ。</p>
-    <p>きのこといえば、たけのこ。</p>
-    <p>にゃんこといえば、大正義。</p>
+<div class="background-image min-w-max lg:min-h-screen">
+  <div class="grid grid-rows-20 grid-flow-col gap-4 min-w-max h-screen">
+    <div class="row-start-15 lg:row-start-16 lg:pt-4 text-center px-4">
+      <div><i class="pt-4 fa-solid fa-angles-down animate-bounce"></i></div>
+        <%= link_to play_path, class:"btn btn-xl shadow-md" do %>
+          きのこたけのこ狩りに行く
+        <% end %>
+    </div>
   </div>
-  <div class="row-start-16 lg:pt-4 text-center px-4">
-    <div><i class="pt-4 fa-solid fa-angles-down animate-bounce"></i></div>
-  <%= link_to play_path, class:"btn btn-xl shadow-md" do %>
-    きのこたけのこ狩りに行く
-  <% end %>
-  </div>
-</div>
 </div>
